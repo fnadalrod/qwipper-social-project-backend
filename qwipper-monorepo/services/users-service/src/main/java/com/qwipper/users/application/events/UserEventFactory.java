@@ -1,7 +1,7 @@
 package com.qwipper.users.application.events;
 
 import com.qwipper.users.domain.model.User;
-import com.qwipper.users.domain.model.events.UserCreatedEvent;
+import com.qwipper.users.domain.events.UserCreatedEvent;
 
 public final class UserEventFactory {
     public static UserCreatedEvent createUserCreatedEvent(

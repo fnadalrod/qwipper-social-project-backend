@@ -1,5 +1,20 @@
 services:
-  mongodb:
+  auth_service_mongodb:
+    image: mongo:6
+    container_name: auth_db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_ROOT_AUTHSOURCE: admin
+    ports:
+      - "${AUTH_SERVICE_RABBITMQ_PORT}:27017"
+    volumes:
+      - mongo_authdb_data:/data/db
+    command: --bind_ip_all --auth
+    networks:
+      - node-network
+  user_service_mongodb:
     image: mongo:6
     container_name: users_db
     restart: always
@@ -8,7 +23,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       MONGO_INITDB_ROOT_AUTHSOURCE: admin
     ports:
-      - "27018:27017"
+      - "${USER_SERVICE_RABBITMQ_PORT}:27017"
     volumes:
       - mongo_usersdb_data:/data/db
     command: --bind_ip_all --auth
@@ -57,7 +72,7 @@ services:
           target: /app/qwipper-monorepo/services/users-service
     environment:
       SPRING_DEVTOOLS_RESTART_ENABLED: "true"
-      SPRING_DATA_MONGODB_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/${MONGO_APP_DATABASE}?authSource=admin"
+      SPRING_DATA_MONGODB_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@user_service_mongodb:27017/${USER_MONGO_APP_DATABASE}?authSource=admin"
       SPRING_RABBITMQ_HOST: "rabbitmq"
       SPRING_RABBITMQ_PORT: "${RABBITMQ_PORT:-5672}"
       SPRING_RABBITMQ_USERNAME: "${RABBITMQ_USERNAME}"
@@ -66,7 +81,7 @@ services:
     ports:
       - "8081:8080"
     depends_on:
-      mongodb:
+      user_service_mongodb:
         condition: service_started
       rabbitmq:      
         condition: service_healthy
@@ -94,7 +109,7 @@ services:
           target: /app/qwipper-monorepo/services/auth-service
     environment:
       SPRING_DEVTOOLS_RESTART_ENABLED: "true"
-      SPRING_DATA_MONGODB_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/${MONGO_APP_DATABASE}?authSource=admin"
+      SPRING_DATA_MONGODB_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@auth_service_mongodb:27017/${AUTH_MONGO_APP_DATABASE}?authSource=admin"
       SPRING_RABBITMQ_HOST: "rabbitmq"
       SPRING_RABBITMQ_PORT: "${RABBITMQ_PORT:-5672}"
       SPRING_RABBITMQ_USERNAME: "${RABBITMQ_USERNAME}"
@@ -103,7 +118,7 @@ services:
     ports:
       - "8082:8080"
     depends_on:
-      mongodb:
+      auth_service_mongodb:
         condition: service_started
       rabbitmq:      
         condition: service_healthy
@@ -115,9 +130,9 @@ services:
     networks:
       - node-network
 
-
 volumes:
   mongo_usersdb_data:
+  mongo_authdb_data:
   rabbitmq-log:
   rabbitmq-data:
 

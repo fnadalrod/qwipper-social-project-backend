@@ -1,9 +1,8 @@
 package com.qwipper.users.infrastructure.persistence;
 
 import com.qwipper.users.domain.model.User;
-import com.qwipper.users.domain.model.repository.UserRepository;
+import com.qwipper.users.domain.repository.UserRepository;
 import com.qwipper.users.domain.model.valueobject.Email;
-import com.qwipper.users.domain.model.valueobject.UserId;
 import com.qwipper.users.domain.model.valueobject.UserName;
 
 import org.springframework.context.annotation.Profile;

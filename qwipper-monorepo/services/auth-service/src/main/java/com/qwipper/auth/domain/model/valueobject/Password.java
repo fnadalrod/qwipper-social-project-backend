@@ -2,8 +2,8 @@ package com.qwipper.auth.domain.model.valueobject;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public record Email(String value) {
-    public Email {}
+public record Password(String value) {
+    public Password {}
 
     @Override
     @JsonValue

@@ -1,7 +1,7 @@
 package com.qwipper.users.application.command.create;
 
 import com.qwipper.users.domain.model.User;
-import com.qwipper.users.domain.model.repository.UserRepository;
+import com.qwipper.users.domain.repository.UserRepository;
 import com.qwipper.users.domain.model.valueobject.Email;
 import com.qwipper.users.domain.model.valueobject.UserName;
 import org.springframework.stereotype.Service;

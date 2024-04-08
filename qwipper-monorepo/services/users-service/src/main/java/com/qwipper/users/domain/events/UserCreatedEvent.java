@@ -1,4 +1,4 @@
-package com.qwipper.users.domain.model.events;
+package com.qwipper.users.domain.events;
 
 import com.qwipper.common.messaging.events.DomainEvent;
 import com.qwipper.users.domain.model.valueobject.Email;

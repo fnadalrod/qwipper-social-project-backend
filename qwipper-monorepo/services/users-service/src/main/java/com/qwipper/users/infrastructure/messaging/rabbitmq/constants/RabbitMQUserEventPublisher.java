@@ -1,8 +1,8 @@
 package com.qwipper.users.infrastructure.messaging.rabbitmq.constants;
 
 import com.qwipper.common.messaging.publisher.AbstractDomainPublisher;
-import com.qwipper.users.domain.model.events.UserCreatedEvent;
-import com.qwipper.users.domain.model.ports.output.UserEventOutputPort;
+import com.qwipper.users.domain.events.UserCreatedEvent;
+import com.qwipper.users.domain.output.UserEventOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

@@ -3,8 +3,8 @@ package com.qwipper.users.application.command.create;
 import com.qwipper.cqrs.command.CommandHandler;
 import com.qwipper.users.application.events.UserEventFactory;
 import com.qwipper.users.domain.model.User;
-import com.qwipper.users.domain.model.events.UserCreatedEvent;
-import com.qwipper.users.domain.model.ports.output.UserEventOutputPort;
+import com.qwipper.users.domain.events.UserCreatedEvent;
+import com.qwipper.users.domain.output.UserEventOutputPort;
 import com.qwipper.users.domain.model.valueobject.Email;
 import com.qwipper.users.domain.model.valueobject.UserName;
 

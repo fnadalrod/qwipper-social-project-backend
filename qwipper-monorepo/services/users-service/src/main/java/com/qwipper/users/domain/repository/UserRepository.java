@@ -1,4 +1,4 @@
-package com.qwipper.users.domain.model.repository;
+package com.qwipper.users.domain.repository;
 
 import com.qwipper.users.domain.model.User;
 import com.qwipper.users.domain.model.valueobject.UserName;

@@ -1,7 +1,7 @@
 package com.qwipper.users.application.service;
 
-import com.qwipper.users.domain.model.exception.ExistsUserNameException;
-import com.qwipper.users.domain.model.repository.UserRepository;
+import com.qwipper.users.domain.exception.ExistsUserNameException;
+import com.qwipper.users.domain.repository.UserRepository;
 import com.qwipper.users.domain.model.valueobject.UserName;
 
 import org.springframework.stereotype.Service;

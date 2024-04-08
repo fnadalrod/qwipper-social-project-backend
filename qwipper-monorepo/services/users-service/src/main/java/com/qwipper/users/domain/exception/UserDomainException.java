@@ -1,4 +1,4 @@
-package com.qwipper.users.domain.model.exception;
+package com.qwipper.users.domain.exception;
 
 import com.qwipper.common.error.ApiException;
 import org.springframework.http.HttpStatus;

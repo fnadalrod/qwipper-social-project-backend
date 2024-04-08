@@ -1,7 +1,7 @@
 package com.qwipper.users.infrastructure.persistence.mongodb.repository;
 
 import com.qwipper.users.domain.model.User;
-import com.qwipper.users.domain.model.repository.UserRepository;
+import com.qwipper.users.domain.repository.UserRepository;
 import com.qwipper.users.domain.model.valueobject.UserName;
 import com.qwipper.users.infrastructure.persistence.mongodb.document.UserDocument;
 

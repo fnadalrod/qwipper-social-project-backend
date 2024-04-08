@@ -1,8 +1,8 @@
 package com.qwipper.users.domain.model.valueobject;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.qwipper.users.domain.model.exception.EmptyUserNameException;
-import com.qwipper.users.domain.model.exception.InvalidUserNameException;
+import com.qwipper.users.domain.exception.EmptyUserNameException;
+import com.qwipper.users.domain.exception.InvalidUserNameException;
 
 public record UserName(String value) {
     private static final int MAX_LENGTH = 30;
