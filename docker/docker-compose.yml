@@ -46,7 +46,7 @@ services:
       - node-network
 
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:4.0.8-management
     hostname: qwipper-queues
     container_name: rabbitmq
     env_file:

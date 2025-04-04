@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
         "com.qwipper.users",
-        "com.qwipper.common.error"
+        "com.qwipper.common"
 })
 public class UsersApplication {
     public static void main(String[] args) {

@@ -1,8 +1,8 @@
-package com.qwipper.users.application.create;
+package com.qwipper.users.application.command.create;
 
-import com.qwipper.users.infrastructure.controller.dto.UserRequest;
+import com.qwipper.cqrs.command.Command;
 
-public class CreateUserCommand {
+public class CreateUserCommand implements Command {
     private final String name;
     private final String email;
 

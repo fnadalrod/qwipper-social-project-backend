@@ -1,4 +1,4 @@
-package com.qwipper.users.application.create;
+package com.qwipper.users.application.command.create;
 
 import com.qwipper.users.domain.model.User;
 import com.qwipper.users.domain.model.repository.UserRepository;

@@ -3,8 +3,8 @@ package com.qwipper.users.infrastructure.controller.query;
 import com.qwipper.common.api.JsonApiResponse;
 import com.qwipper.common.api.Meta;
 import com.qwipper.common.error.NoDataAvailableException;
-import com.qwipper.users.application.find.GetUsersQuery;
-import com.qwipper.users.application.find.GetUsersHandler;
+import com.qwipper.users.application.query.find.GetUsersQuery;
+import com.qwipper.users.application.query.find.GetUsersHandler;
 
 import com.qwipper.users.domain.model.User;
 import org.springframework.http.ResponseEntity;

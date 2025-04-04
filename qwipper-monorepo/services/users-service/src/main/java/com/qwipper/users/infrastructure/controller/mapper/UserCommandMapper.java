@@ -1,7 +1,7 @@
 package com.qwipper.users.infrastructure.controller.mapper;
 
 import com.qwipper.common.api.JsonApiRequest;
-import com.qwipper.users.application.create.CreateUserCommand;
+import com.qwipper.users.application.command.create.CreateUserCommand;
 import com.qwipper.users.infrastructure.controller.dto.UserRequest;
 
 public final class UserCommandMapper {
