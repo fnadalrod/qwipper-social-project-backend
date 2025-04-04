@@ -45,8 +45,25 @@ services:
     networks:
       - node-network
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: qwipper-queues
+    container_name: rabbitmq
+    env_file:
+        - ./.env
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USERNAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    volumes:
+      - rabbitmq-log:/var/log/rabbitmq
+
 volumes:
   mongo_usersdb_data:
+  rabbitmq-log:
 
   
 networks:
