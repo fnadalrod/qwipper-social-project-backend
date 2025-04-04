@@ -1,0 +1,23 @@
+FROM maven:3.8.4-openjdk-17-slim AS build
+WORKDIR /app
+
+COPY qwipper-monorepo/pom.xml .
+
+RUN mvn install -N -f pom.xml
+
+COPY qwipper-monorepo/libs/qwipper-common/pom.xml ./libs/qwipper-common/
+COPY qwipper-monorepo/services/pom.xml ./services/
+COPY qwipper-monorepo/services/users-service/pom.xml ./services/users-service/
+
+RUN mvn dependency:go-offline -f pom.xml --fail-never
+
+COPY qwipper-monorepo/ .
+
+RUN mvn clean package -DskipTests
+
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/services/users-service/target/users-service-1.0.0.jar ./app.jar
+RUN jar tf app.jar | grep MANIFEST.MF
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

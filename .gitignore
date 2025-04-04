@@ -1,0 +1,41 @@
+# Maven
+target/
+*.log
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Docker
+.docker/
+docker-compose.override.yml
+docker-compose.prod.yml
+docker-compose.local.yml
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Spring Boot specific
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+
+# Maven wrapper
+.mvn/
+mvnw*
+mvnw.cmd
+
+# Logs
+logs/
+log/
+
+# Temporary files
+*.bak
+*.swp
+*.swo
+*~

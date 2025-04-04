@@ -1,0 +1,54 @@
+services:
+  mongodb:
+    image: mongo:6
+    container_name: users_db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_ROOT_AUTHSOURCE: admin
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_usersdb_data:/data/db
+    command: --bind_ip_all --auth
+    networks:
+      - node-network
+
+  users_service:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile.users-service
+    container_name: users-service
+    volumes:
+      - type: bind
+        source: ./qwipper-monorepo
+        target: /app/qwipper-monorepo
+    develop:
+      watch:
+        - action: rebuild
+          path: ../qwipper-monorepo/services/users-service
+          target: /app/qwipper-monorepo/services/users-service
+    environment:
+      SPRING_DEVTOOLS_RESTART_ENABLED: "true"
+      SPRING_DATA_MONGODB_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/${MONGO_APP_DATABASE}?authSource=admin"
+    ports:
+      - "8085:8080"
+    depends_on:
+      mongodb:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - node-network
+
+volumes:
+  mongo_usersdb_data:
+
+  
+networks:
+  node-network:
+    driver: bridge
