@@ -1,5 +1,6 @@
 package com.qwipper.users.domain.model;
 
+import com.qwipper.users.domain.model.events.UserCreatedEvent;
 import com.qwipper.users.domain.model.valueobject.Email;
 import com.qwipper.users.domain.model.valueobject.UserId;
 import com.qwipper.users.domain.model.valueobject.UserName;
@@ -24,11 +25,9 @@ public class User {
     }
 
     public static User createNew(UserName username, Email email) {
-        return new User(null, username, email);
-    }
+        User user = new User(null, username, email);
 
-    public static User createFromPersistence(UserId id, UserName username, Email email) {
-        return new User(id, username, email);
+        return user;
     }
 
     public Optional<UserId> getId() {

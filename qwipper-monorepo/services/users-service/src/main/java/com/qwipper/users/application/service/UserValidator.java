@@ -1,4 +1,4 @@
-package com.qwipper.users.domain.service;
+package com.qwipper.users.application.service;
 
 import com.qwipper.users.domain.model.exception.ExistsUserNameException;
 import com.qwipper.users.domain.model.repository.UserRepository;

@@ -2,15 +2,12 @@ package com.qwipper.users.domain.model.valueobject;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class Email {
-    private final String value;
+public record Email(String value) {
+    public Email {}
 
-    public Email(String value) {
-        this.value = value;
-    }
-
+    @Override
     @JsonValue
-    public String getValue() {
+    public String value() {
         return value;
     }
 }

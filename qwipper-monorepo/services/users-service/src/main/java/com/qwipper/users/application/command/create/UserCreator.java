@@ -14,9 +14,9 @@ public class UserCreator {
         this.repository = repository;
     }
 
-    public void create(UserName name, Email duration) {
-        User user = User.createNew(name, duration);
+    public User create(UserName name, Email email) {
+        User user = User.createNew(name, email);
 
-        repository.save(user);
+        return repository.save(user);
     }
 }

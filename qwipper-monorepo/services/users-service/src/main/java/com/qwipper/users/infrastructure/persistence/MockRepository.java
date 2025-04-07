@@ -18,7 +18,7 @@ public class MockRepository implements UserRepository {
     @Override
     public List<User> findAll() {
         ArrayList list = new ArrayList();
-        list.add(User.createFromPersistence(new UserId("aaaaaaa"), new UserName( "userName"), new Email("user@user.es")));
+        list.add(User.createNew(new UserName( "userName"), new Email("user@user.es")));
         return list;
     }
 

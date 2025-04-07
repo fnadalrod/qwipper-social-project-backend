@@ -1,4 +1,4 @@
-package com.qwipper.users.infrastructure.controller.query;
+package com.qwipper.users.infrastructure.controller.api.query;
 
 import com.qwipper.common.api.JsonApiResponse;
 import com.qwipper.common.api.Meta;

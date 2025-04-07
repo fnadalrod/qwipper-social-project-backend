@@ -1,9 +1,9 @@
-package com.qwipper.users.infrastructure.controller.command;
+package com.qwipper.users.infrastructure.controller.api.command;
 
 import com.qwipper.common.api.JsonApiRequest;
 import com.qwipper.users.application.command.create.CreateUserCommandHandler;
 
-import com.qwipper.users.infrastructure.controller.dto.UserRequest;
+import com.qwipper.users.infrastructure.controller.api.dto.request.UserRequest;
 import com.qwipper.users.infrastructure.controller.mapper.UserCommandMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

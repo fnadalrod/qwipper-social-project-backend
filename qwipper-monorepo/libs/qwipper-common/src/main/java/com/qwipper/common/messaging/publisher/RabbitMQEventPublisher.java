@@ -2,6 +2,7 @@ package com.qwipper.common.messaging.publisher;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,14 +12,11 @@ import org.springframework.stereotype.Component;
 public class RabbitMQEventPublisher implements EventPublisher {
     private final AmqpTemplate amqpTemplate;
     private final MessageConverter messageConverter;
-    private final String defaultExchange;
 
     public RabbitMQEventPublisher(AmqpTemplate amqpTemplate,
-                                  MessageConverter messageConverter,
-                                  @Value("${spring.rabbitmq.template.exchange:}") String defaultExchange) {
+                                  MessageConverter messageConverter) {
         this.amqpTemplate = amqpTemplate;
         this.messageConverter = messageConverter;
-        this.defaultExchange = defaultExchange;
     }
 
     @Override
@@ -27,12 +25,8 @@ public class RabbitMQEventPublisher implements EventPublisher {
     }
 
     @Override
-    public void publish(String routingKey, Object event) {
-        if (defaultExchange.isEmpty()) {
-            throw new IllegalStateException("Default exchange not configured");
-        }
-
-        publish(defaultExchange, routingKey, event);
+    public void publish(String queueName, Object event) {
+        amqpTemplate.convertAndSend("", queueName, event, this::enhanceMessage);
     }
 
     private Message enhanceMessage(Message message) {

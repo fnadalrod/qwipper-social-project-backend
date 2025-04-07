@@ -31,7 +31,7 @@ public class UserDocument {
     public static UserDocument fromDomain(User user) {
         return new UserDocument(
                 user.getUsername().value(),
-                user.getEmail().getValue()
+                user.getEmail().value()
         );
     }
 
