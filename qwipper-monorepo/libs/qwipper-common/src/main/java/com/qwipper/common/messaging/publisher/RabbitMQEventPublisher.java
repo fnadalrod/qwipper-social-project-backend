@@ -6,9 +6,11 @@ import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
 
 @Component
+@ConditionalOnBean(MessageConverter.class)
 public class RabbitMQEventPublisher implements EventPublisher {
     private final AmqpTemplate amqpTemplate;
     private final MessageConverter messageConverter;

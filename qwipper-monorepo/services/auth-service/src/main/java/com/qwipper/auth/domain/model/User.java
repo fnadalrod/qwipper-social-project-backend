@@ -1,8 +1,8 @@
-package com.qwipper.users.domain.model;
+package com.qwipper.auth.domain.model;
 
-import com.qwipper.users.domain.model.valueobject.Email;
-import com.qwipper.users.domain.model.valueobject.UserId;
-import com.qwipper.users.domain.model.valueobject.UserName;
+import com.qwipper.auth.domain.model.valueobject.Email;
+import com.qwipper.auth.domain.model.valueobject.UserId;
+import com.qwipper.auth.domain.model.valueobject.UserName;
 
 import java.util.Optional;
 

@@ -1,6 +1,7 @@
 package com.qwipper.users.infrastructure.messaging.rabbitmq.constants.config;
 
 import com.qwipper.users.infrastructure.messaging.rabbitmq.constants.RabbitMQQueues;
+import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.*;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -23,9 +24,14 @@ public class DynamicQueueConfig {
 
                     Queue queue = QueueBuilder.durable(queueName)
                             .withArgument("x-dead-letter-exchange", "dead.letter.exchange")
+                            .withArgument("x-dead-letter-routing-key", queueName + ".DLQ")
                             .build();
 
-                    amqpAdmin.declareQueue(queue);
+                    try {
+                        amqpAdmin.declareQueue(queue);
+                    }  catch (AmqpException e) {
+
+                    }
 
                     Binding binding = BindingBuilder
                             .bind(queue)
